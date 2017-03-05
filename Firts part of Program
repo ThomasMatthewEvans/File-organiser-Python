@@ -1,0 +1,18 @@
+#Simple Program created in Python 2.7 in order to move files from 1 location to another
+#TEvans 05MAR17
+
+import os           #Import relevant modules         
+import shutil
+
+#Create folders for files to be moved to
+
+print("Welcome to the file sorter, this will sort PDF, Excell and Word files, into separate folders")
+print("Please answer the next questions in order to proceed")
+Run = input ("Do you want to create sub folders in C>File Sorter, for PDF, Excel and PDF files(Y/N)")
+if Run =="Y":
+    os.makedirs("C:\\Folder Sorter\\Excell")
+    os.makedirs("C:\\Folder Sorter\\PDF")
+    os.makedirs("C:\\Folder Sorter\\Word")
+    print("The file directories have been created, next you will be asked if you want files to be moved and from what file")
+else:
+    print('Please enter"Y" or "N" if, the answer is "N" then the program will terminate and your files will be sorted')
