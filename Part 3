@@ -1,0 +1,61 @@
+#Simple Program created in Python 2.7 in order to move files from 1 location to another
+#TEvans 05MAR17
+
+import os           #Import relevant modules         
+import shutil
+import re
+
+#Create folders for files to be moved to
+
+print("Welcome to the file sorter, this will sort PDF, Excell and Word files, into separate folders")
+print("Please answer the next questions in order to proceed")
+Run = input ("Do you want to create sub folders in C>File Sorter, for PDF, Excel and PDF files(Y/N)")
+if Run =="Y":
+    os.makedirs("C:\\Folder Sorter\\Excel")
+    os.makedirs("C:\\Folder Sorter\\PDF")
+    os.makedirs("C:\\Folder Sorter\\Word")
+    print("The file directories have been created, next you will be asked if you want files to be moved and from what file")
+else:
+    print('Please enter"Y" or "N" if, the answer is "N" then the program will terminate and your files will be sorted')
+    
+#Access a directory with files to sort and loop over files mooving them to correct location
+
+path = input("Please enter the filepath u wish to search")
+dirs = os.listdir( path )   #No "" as this is a variable not a string
+for filename in dirs:
+    if filename.endswith(".xlsx"):
+        shutil.move(path +"/"+filename, "C:\\Folder Sorter\\Excel")
+    elif filename.endswith(".docx"):
+        shutil.move(path +"/"+filename, "C:\\Folder Sorter\\Word")
+    elif filename.endswith(".pdf"):
+        shutil.move(path+"/"+filename, "C:\\Folder Sorter\\PDF")
+    else:
+        print("There are other files in the folders that are not word, pdf or excel related")
+        print("These files are:")
+        for filename in os.listdir(path):
+            print (path, filename)
+            addFolder = input("Do you wish to create another folder to add these files in? (Y/N)")
+            if addFolder =="Y":
+                newFolderName = input ("Create the name of this new folder and it will be stored in the Folder Sorter folder")
+                os.makedirs("C:\\Folder Sorter\\" + newFolderName)
+                for filename in os.listdir(path):
+                    shutil.move(path +"/"+ filename, "C:\\Folder Sorter\\" + newFolderName)
+
+                    #All above code works and has been tested
+                print("At this point there are no files in: " + os.listdir(path) + " All files are in 'C:\\Folder Sorter' below the size of each folder will
+                      be displayed")
+                      #create a function to return the sizes of each folder.
+                      #the function will be called, will contain the path of each file and the folder sizes
+                ###
+''' def ge_si(start_path = '.'):
+    tot_si = 0
+    for dirpath, dirnames, filenames in os.walk(start_path):
+        for f in filenames:
+            fp = os.path.join(dirpath, f)
+            tot_si += os.path.getsize(fp)
+    return tot_si
+
+print ge_si() '''
+
+
+                      ###
